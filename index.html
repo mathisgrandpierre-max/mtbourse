@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MTBourse</title>
+<meta name="description" content="MTBourse : apprendre, analyser, investir.">
+<meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0F12" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MTBourse">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap">
+<style>
+:root{--bg:#FBFAF7;--panel:#FFFFFF;--line:#E2DDD2;--fg:#0E0F12;--muted:#5C5A55;--gold:#6B5220;--mark-bg:#0E0F12;--mark-m:#D9A94A;--mark-b:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0E0F12;--panel:#16171B;--line:#2A2925;--fg:#F4F2EE;--muted:#A7A49C;--gold:#D9A94A;--mark-bg:#D9A94A;--mark-m:#0E0F12;--mark-b:#0E0F12;color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--fg);font-family:"Sora",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom)}
+.splash{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center}
+.icon{width:112px;height:112px;animation:pop .45s cubic-bezier(.2,.8,.2,1) both}
+.bg{fill:var(--mark-bg)}
+.m,.a{fill:none;stroke:var(--mark-m);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:100;stroke-dashoffset:100}
+.m{animation:draw .7s .3s ease-out forwards}
+.a{animation:draw .3s .95s ease-out forwards}
+.b1,.b2{fill:var(--mark-b);transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0)}
+.b1{animation:grow .35s 1.05s cubic-bezier(.2,.8,.2,1) forwards}
+.b2{animation:grow .35s 1.2s cubic-bezier(.2,.8,.2,1) forwards}
+.word{font-size:40px;font-weight:600;letter-spacing:-.05em;line-height:1;opacity:0;transform:translateY(8px);animation:fadein .5s 1.3s ease-out forwards}
+.word span{font-weight:300}
+.tag{font-size:11px;font-weight:400;letter-spacing:.3em;color:var(--gold);opacity:0;animation:fadein .5s 1.5s ease-out forwards}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes grow{to{transform:scaleY(1)}}
+@keyframes fadein{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.icon,.word,.tag{animation:none;opacity:1;transform:none}.m,.a{animation:none;stroke-dashoffset:0}.b1,.b2{animation:none;transform:none}}
+.help{width:100%;max-width:440px;margin-top:12px;display:flex;flex-direction:column;gap:14px;text-align:left}
+.help[hidden],.slow[hidden],[hidden]{display:none!important}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}
+.card h2{margin:0 0 10px;font-size:1rem;font-weight:600}
+.card ol{margin:0;padding-left:1.2em;line-height:1.6;font-size:.95rem}
+.card p{margin:0;font-size:.9rem;line-height:1.5;color:var(--muted)}
+.btn{display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.btn.primary{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.slow{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.9rem;color:var(--muted)}
+kbd{font-family:inherit;font-weight:600;color:var(--fg)}
+</style>
+</head>
+<body>
+<main class="splash">
+  <svg class="icon" viewBox="0 0 64 64" role="img" aria-label="MTBourse"><rect class="bg" width="64" height="64" rx="16"/><path class="m" pathLength="100" d="M15 47V20l15 15 18-18"/><path class="a" pathLength="100" d="M39 17h9v9"/><rect class="b1" x="36" y="38" width="6" height="9" rx="3"/><rect class="b2" x="45" y="32" width="6" height="15" rx="3"/></svg>
+  <div class="word">MT<span>Bourse</span></div>
+  <div class="tag">APPRENDRE · ANALYSER · INVESTIR</div>
+
+  <!-- Ouvert dans le navigateur : explications d'installation -->
+  <section class="help" id="help" hidden>
+    <button class="btn primary" id="install" type="button" hidden>Installer MTBourse</button>
+    <div class="card" id="ios" hidden>
+      <h2>Installer sur ton iPhone</h2>
+      <ol>
+        <li>Ouvre cette page dans <kbd>Safari</kbd>.</li>
+        <li>Touche le bouton <kbd>Partager</kbd> (le carré avec une flèche vers le haut).</li>
+        <li>Choisis <kbd>Sur l'écran d'accueil</kbd>, puis <kbd>Ajouter</kbd>.</li>
+      </ol>
+    </div>
+    <div class="card" id="android" hidden>
+      <h2>Installer sur ton téléphone Android</h2>
+      <ol>
+        <li>Dans <kbd>Chrome</kbd>, touche le menu <kbd>⋮</kbd> en haut à droite.</li>
+        <li>Choisis <kbd>Installer l'application</kbd> (ou <kbd>Ajouter à l'écran d'accueil</kbd>).</li>
+      </ol>
+    </div>
+    <div class="card" id="desktop" hidden>
+      <h2>Installer sur ton ordinateur</h2>
+      <ol>
+        <li>Dans <kbd>Chrome</kbd> ou <kbd>Edge</kbd>, clique sur l'icône d'installation à droite de la barre d'adresse (un écran avec une flèche).</li>
+        <li>Ou menu <kbd>⋮</kbd> → <kbd>Caster, enregistrer et partager</kbd> → <kbd>Installer MTBourse</kbd>.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>La première fois</h2>
+      <p>Connecte-toi à ton compte Claude dans l'appli (une seule fois) : c'est lui qui garde tes données privées.</p>
+    </div>
+    <a class="btn" id="open" href="#">Ouvrir sans installer</a>
+  </section>
+
+  <!-- Appli installée : si l'ouverture tarde -->
+  <div class="slow" id="slow" hidden>
+    <span>L'appli ne s'ouvre pas ?</span>
+    <a class="btn primary" id="retry" href="#">Ouvrir MTBourse</a>
+  </div>
+</main>
+<script>
+(function () {
+  "use strict";
+  var APP = "https://claude.ai/artifact/JB6JXhT3rM5zUwnz3EufUm";
+  var standalone = window.matchMedia("(display-mode: standalone)").matches ||
+    window.matchMedia("(display-mode: window-controls-overlay)").matches ||
+    window.navigator.standalone === true || /[?&]source=app\b/.test(location.search);
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function (id) { return document.getElementById(id); };
+  $("open").href = APP; $("retry").href = APP;
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
+  }
+
+  if (standalone) {
+    // Appli installée : animation du M, puis ouverture de l'appli
+    setTimeout(function () { location.replace(APP); }, reduce ? 200 : 1900);
+    setTimeout(function () { $("slow").hidden = false; }, 6000);
+    return;
+  }
+
+  // Navigateur : on explique comment installer
+  var ua = navigator.userAgent;
+  var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var android = /Android/.test(ua);
+  $(ios ? "ios" : android ? "android" : "desktop").hidden = false;
+  setTimeout(function () { $("help").hidden = false; }, reduce ? 0 : 1600);
+
+  var deferred = null;
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault(); deferred = e; $("install").hidden = false;
+  });
+  $("install").addEventListener("click", function () {
+    if (!deferred) return;
+    deferred.prompt();
+    deferred.userChoice.then(function () { deferred = null; $("install").hidden = true; });
+  });
+  window.addEventListener("appinstalled", function () { $("install").hidden = true; });
+})();
+</script>
+</body>
+</html>
